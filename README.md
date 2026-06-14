@@ -27,3 +27,8 @@ Over the next 60 days, I will:
 I'm excited to document my progress and growth over the next 60 days.
 
 Let's build the future with AI! 🚀
+
+## Day 2
+- Learned Prompt Engineering
+- Compared Weak vs Engineered Prompts
+- Created Prompt Engineering Infographic
