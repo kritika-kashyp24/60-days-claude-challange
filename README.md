@@ -15,7 +15,7 @@ Over the next 60 days, I will:
 * Explore AI applications
 * Share my learning journey publicly
 
-## Day 1
+## Day 1 - AI Personality Profile
 
 ✅ Started the challenge
 
@@ -25,30 +25,22 @@ Over the next 60 days, I will:
 
 I'm excited to document my progress and growth over the next 60 days.
 
-## Day 2
+## Day 2 - Prompt Engineering
+
 - Learned Prompt Engineering
 - Compared Weak vs Engineered Prompts
 - Created Prompt Engineering Infographic
 
 ## Day 3 – Role-Based Prompting 🎭
 
-Today, I learned about Role-Based Prompting and how assigning a specific role can improve AI responses.
+- Learned how assigning different roles changes AI responses.
+- Compared outputs from Founder and Developer personas.
+- Explored Claude Usage Counter.
+- Understood how role-based prompts improve response quality and relevance.
 
-### What I Explored
-- Asked the same question without a role
-- Asked the same question as a Founder
-- Asked the same question as a Developer
-- Compared the outputs and insights
+## Day 4 – AI Career Roadmap 🚀
 
-### Key Learnings
-✅ Different roles provide different perspectives
-✅ Founder prompts focus on business, strategy, and growth
-✅ Developer prompts focus on technical implementation and solutions
-✅ Role-Based Prompting helps generate more relevant and expert-level responses
-
-### Tools Used
-- Claude AI
-- Claude Usage Counter
-
-### Conclusion
-Role-Based Prompting is a powerful technique that transforms generic AI responses into more focused, practical, and context-aware answers.
+- Created a personalized AI Career Roadmap.
+- Identified strengths, skill gaps, and learning priorities.
+- Explored project ideas, networking strategies, and career milestones.
+- Learned the importance of structured planning for long-term growth.
