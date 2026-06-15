@@ -32,3 +32,29 @@ Let's build the future with AI! 🚀
 - Learned Prompt Engineering
 - Compared Weak vs Engineered Prompts
 - Created Prompt Engineering Infographic
+
+## Day 3 – Role-Based Prompting 🎭
+
+Today, I learned about Role-Based Prompting and how assigning a specific role can improve AI responses.
+
+### What I Explored
+- Asked the same question without a role
+- Asked the same question as a Founder
+- Asked the same question as a Developer
+- Compared the outputs and insights
+
+### Key Learnings
+✅ Different roles provide different perspectives
+
+✅ Founder prompts focus on business, strategy, and growth
+
+✅ Developer prompts focus on technical implementation and solutions
+
+✅ Role-Based Prompting helps generate more relevant and expert-level responses
+
+### Tools Used
+- Claude AI
+- Claude Usage Counter
+
+### Conclusion
+Role-Based Prompting is a powerful technique that transforms generic AI responses into more focused, practical, and context-aware answers.
