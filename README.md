@@ -1,10 +1,9 @@
 # 60-days-claude-challange
 My 60 Days of AI Challenge Journey
-# 60 Days of AI Challenge 🚀
 
 Hi, I'm Kriti.
 
-I am a student passionate about Artificial Intelligence, Data Science, and Technology.
+I am a Btech. student passionate about Artificial Intelligence, Data Science, and Technology.
 
 ## My Goal
 
@@ -26,8 +25,6 @@ Over the next 60 days, I will:
 
 I'm excited to document my progress and growth over the next 60 days.
 
-Let's build the future with AI! 🚀
-
 ## Day 2
 - Learned Prompt Engineering
 - Compared Weak vs Engineered Prompts
@@ -45,11 +42,8 @@ Today, I learned about Role-Based Prompting and how assigning a specific role ca
 
 ### Key Learnings
 ✅ Different roles provide different perspectives
-
 ✅ Founder prompts focus on business, strategy, and growth
-
 ✅ Developer prompts focus on technical implementation and solutions
-
 ✅ Role-Based Prompting helps generate more relevant and expert-level responses
 
 ### Tools Used
