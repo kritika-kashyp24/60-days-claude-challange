@@ -44,3 +44,16 @@ I'm excited to document my progress and growth over the next 60 days.
 - Identified strengths, skill gaps, and learning priorities.
 - Explored project ideas, networking strategies, and career milestones.
 - Learned the importance of structured planning for long-term growth.
+
+## Day 5 - Context Engineering
+
+### What I Learned
+Today, I learned the importance of Context Engineering in AI prompting. I explored how providing relevant context helps AI generate more accurate, personalized, and useful responses.
+
+### Activity
+- Compared a prompt without context and a prompt with detailed context.
+- Analyzed the differences in response quality and personalization.
+- Learned how context improves AI understanding and output relevance.
+
+### Key Takeaway
+The quality of AI responses depends not only on the prompt but also on the context provided. Better context leads to better results.
