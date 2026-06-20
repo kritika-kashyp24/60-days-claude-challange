@@ -57,3 +57,71 @@ Today, I learned the importance of Context Engineering in AI prompting. I explor
 
 ### Key Takeaway
 The quality of AI responses depends not only on the prompt but also on the context provided. Better context leads to better results.
+
+Day 6 – Resume Optimization with AI
+Objective
+
+Learn how to use AI for ATS-friendly resume analysis and optimization.
+
+Tasks Performed
+Uploaded resume to Claude AI
+Used the Resume Optimizer prompt
+Reviewed ATS analysis and recommendations
+Generated an optimized one-page resume
+Compared original and optimized versions
+Key Learnings
+Understanding ATS (Applicant Tracking System) requirements
+Improving resume structure and keyword optimization
+Using AI to enhance professional documents
+Creating concise and impactful resumes
+
+Day 7 – Claude Usage Strategy
+Objective
+
+Develop a personalized strategy for using Claude effectively.
+
+Tasks Performed
+Installed Claude Counter
+Used the Claude Usage Strategy prompt
+Answered personalized questions
+Generated a customized Claude workflow
+Documented the strategy and insights
+Key Learnings
+Choosing the appropriate Claude model for different tasks
+Understanding reasoning effort levels
+Optimizing AI usage for productivity
+Creating efficient AI-assisted workflows
+
+Day 8 – Environmental Health Analyzer Dashboard
+Objective
+
+Build an interactive Environmental Health Dashboard using AI-generated code.
+
+Tasks Performed
+Used the Environmental Health Analyzer prompt
+Generated an interactive dashboard
+Created a downloadable HTML application
+Tested charts, filters, and dashboard functionality
+Documented dashboard features and observations
+Key Learnings
+AI-assisted dashboard development
+Interactive data visualization concepts
+HTML, CSS, and JavaScript integration
+Testing and validating web applications
+
+Day 9 – NutriScope Application (MVP to Enhanced Version)
+Objective
+
+Learn iterative product development by building and enhancing a nutrition analysis application.
+
+Tasks Performed
+Generated the MVP version of NutriScope
+Created a downloadable HTML application
+Enhanced the application using a second prompt
+Compared MVP and enhanced versions
+Documented improvements and observations
+Key Learnings
+Understanding MVP (Minimum Viable Product) development
+Iterative application enhancement using AI
+User interface and user experience improvements
+Practical web application prototyping
