@@ -58,70 +58,49 @@ Today, I learned the importance of Context Engineering in AI prompting. I explor
 ### Key Takeaway
 The quality of AI responses depends not only on the prompt but also on the context provided. Better context leads to better results.
 
-Day 6 – Resume Optimization with AI
-Objective
+## Day 6 – Resume Optimization with AI
 
-Learn how to use AI for ATS-friendly resume analysis and optimization.
+Used Claude AI to analyze and optimize my resume for ATS compatibility. Learned how AI can improve resume structure, keyword usage, and overall presentation to increase job application effectiveness.
 
-Tasks Performed
-Uploaded resume to Claude AI
-Used the Resume Optimizer prompt
-Reviewed ATS analysis and recommendations
-Generated an optimized one-page resume
-Compared original and optimized versions
-Key Learnings
-Understanding ATS (Applicant Tracking System) requirements
-Improving resume structure and keyword optimization
-Using AI to enhance professional documents
-Creating concise and impactful resumes
+### Key Learnings
 
-Day 7 – Claude Usage Strategy
-Objective
+* ATS-friendly resume optimization
+* Importance of relevant keywords
+* Professional resume formatting
+* AI-assisted career preparation
 
-Develop a personalized strategy for using Claude effectively.
+## Day 7 – Claude Usage Strategy
 
-Tasks Performed
-Installed Claude Counter
-Used the Claude Usage Strategy prompt
-Answered personalized questions
-Generated a customized Claude workflow
-Documented the strategy and insights
-Key Learnings
-Choosing the appropriate Claude model for different tasks
-Understanding reasoning effort levels
-Optimizing AI usage for productivity
-Creating efficient AI-assisted workflows
+Learned how to use Claude more effectively by selecting the right model and reasoning effort based on the task. Created a personalized AI workflow to improve productivity, optimize responses, and make better use of AI for learning and problem-solving.
 
-Day 8 – Environmental Health Analyzer Dashboard
-Objective
+### Key Learnings
 
-Build an interactive Environmental Health Dashboard using AI-generated code.
+* Choosing the right Claude model
+* Understanding reasoning effort levels
+* Creating an efficient AI workflow
+* Improving productivity with AI
 
-Tasks Performed
-Used the Environmental Health Analyzer prompt
-Generated an interactive dashboard
-Created a downloadable HTML application
-Tested charts, filters, and dashboard functionality
-Documented dashboard features and observations
-Key Learnings
-AI-assisted dashboard development
-Interactive data visualization concepts
-HTML, CSS, and JavaScript integration
-Testing and validating web applications
+## Day 8 – Environmental Health Analyzer
 
-Day 9 – NutriScope Application (MVP to Enhanced Version)
-Objective
+Built an interactive Environmental Health Dashboard using Claude AI. Generated a complete HTML application with charts, filters, and data visualization features. Tested the dashboard functionality and explored how AI can assist in creating data-driven web applications.
 
-Learn iterative product development by building and enhancing a nutrition analysis application.
+### Key Learnings
 
-Tasks Performed
-Generated the MVP version of NutriScope
-Created a downloadable HTML application
-Enhanced the application using a second prompt
-Compared MVP and enhanced versions
-Documented improvements and observations
-Key Learnings
-Understanding MVP (Minimum Viable Product) development
-Iterative application enhancement using AI
-User interface and user experience improvements
-Practical web application prototyping
+* AI-powered dashboard development
+* Data visualization concepts
+* HTML, CSS, and JavaScript integration
+* Interactive web application design
+
+## Day 9 – NutriScope Application
+
+Built the MVP version of NutriScope using Claude AI and then enhanced it with additional features and improved design. Compared both versions to understand iterative product development and AI-assisted web application creation.
+
+### Key Learnings
+
+* MVP vs Enhanced Product Development
+* AI-Assisted Application Building
+* HTML, CSS, and JavaScript Integration
+* User Experience and Feature Enhancement
+
+
+
