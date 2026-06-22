@@ -1,0 +1,19 @@
+Sample Job Description 
+Role: Data Analyst 
+Responsibilities 
+Analyze datasets to identify trends and business insights. 
+Create dashboards using Power BI/Tableau. 
+Write SQL queries for reporting and analysis. 
+Clean and validate data from multiple sources. 
+Collaborate with stakeholders to define KPIs. 
+Required Skills 
+SQL 
+Excel 
+Power BI/Tableau 
+Data Analysis 
+Data Visualization 
+Statistics 
+Preferred Skills 
+Python 
+ETL Concepts 
+Machine Learning Fundamentals
