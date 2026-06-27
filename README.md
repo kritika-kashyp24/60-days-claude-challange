@@ -102,5 +102,47 @@ Built the MVP version of NutriScope using Claude AI and then enhanced it with ad
 * HTML, CSS, and JavaScript Integration
 * User Experience and Feature Enhancement
 
+## Day 10 – AI Portfolio Website
 
+Created a professional portfolio website using Claude AI by providing personal details and generating a complete HTML application. Tested the website, captured screenshots, and learned how AI can simplify personal branding and web development.
 
+### Key Learnings
+
+* AI-assisted portfolio creation
+* HTML, CSS, and JavaScript integration
+* Personal branding through web portfolios
+* Testing and improving AI-generated websites
+
+## Day 11 – ATS Resume Optimization
+
+Used Claude AI to analyze my resume against a target job description. Reviewed the ATS Match Score, identified missing keywords and skill gaps, and generated an ATS-optimized resume tailored for the role.
+
+### Key Learnings
+
+* Understanding ATS Match Scores
+* Resume keyword optimization
+* Identifying skill gaps
+* Tailoring resumes for specific job roles
+
+## Day 12 – Job Search & Personal Career Assistant
+
+Used Claude AI to create a personalized job search assistant. Defined career goals, target roles, preferred locations, and required skills to generate suitable job search strategies and career recommendations.
+
+### Key Learnings
+
+* AI-assisted career planning
+* Defining clear job search criteria
+* Understanding role-skill alignment
+* Exploring opportunities in Data Analysis and related fields
+
+## Day 13 – AI Job Search & Opportunity Analysis
+
+Used Claude AI to create a professional job search profile, define career preferences, explore matching job opportunities, analyze skill gaps, and understand current market demand.
+
+### Key Learnings
+
+* AI-Assisted Job Search
+* Job Match Score Analysis
+* Skill Gap Identification
+* Market Demand Insights
+* Career Planning with AI
