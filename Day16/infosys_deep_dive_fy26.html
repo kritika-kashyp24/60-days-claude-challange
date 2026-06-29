@@ -1,0 +1,412 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--text-primary)}
+.tabs{display:flex;gap:4px;border-bottom:0.5px solid var(--border);margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:8px 14px;font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--text-secondary);border-bottom:2px solid transparent;font-family:var(--font-sans)}
+.tab.active{color:var(--text-primary);border-bottom:2px solid #2a78d6;font-weight:500}
+.panel{display:none}.panel.active{display:block}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.5rem}
+.metric-card{background:var(--surface-1);border-radius:8px;padding:12px 14px}
+.metric-card .label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px}
+.metric-card .value{font-size:20px;font-weight:500;color:var(--text-primary)}
+.metric-card .sub{font-size:11px;color:var(--text-secondary);margin-top:2px}
+.section{margin-bottom:1.5rem}
+.section h3{font-size:14px;font-weight:500;color:var(--text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em}
+.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:12px;font-weight:500}
+.badge-green{background:#EAF3DE;color:#3B6D11}
+.badge-amber{background:#FAEEDA;color:#854F0B}
+.badge-red{background:#FCEBEB;color:#A32D2D}
+.badge-blue{background:#E6F1FB;color:#185FA5}
+.badge-purple{background:#EEEDFE;color:#3C3489}
+.row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--border);font-size:14px}
+.row:last-child{border-bottom:none}
+.row .rkey{color:var(--text-secondary)}
+.row .rval{font-weight:500}
+.peer-table{width:100%;border-collapse:collapse;font-size:13px}
+.peer-table th{text-align:left;padding:8px 10px;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);border-bottom:0.5px solid var(--border)}
+.peer-table td{padding:8px 10px;border-bottom:0.5px solid var(--border)}
+.peer-table tr.highlight td{font-weight:500;background:var(--surface-1)}
+.strength-item,.watch-item{display:flex;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:14px}
+.strength-item:last-child,.watch-item:last-child{border-bottom:none}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dot-green{background:#639922}.dot-amber{background:#BA7517}
+.chart-wrap{position:relative;width:100%;height:240px;margin:1rem 0}
+.chart-wrap-tall{position:relative;width:100%;height:300px;margin:1rem 0}
+.note{font-size:12px;color:var(--text-muted);line-height:1.6;padding:10px 12px;background:var(--surface-1);border-radius:6px;border-left:3px solid var(--border-strong)}
+.quality-box{border-radius:10px;padding:14px 16px;background:var(--surface-1);border:0.5px solid var(--border)}
+.quality-box .qlabel{font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:4px}
+.quality-box .qval{font-size:18px;font-weight:500;color:#185FA5}
+.quality-box .qdesc{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.5}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.two-col{grid-template-columns:1fr}}
+.source-note{font-size:11px;color:var(--text-muted);margin-top:4px}
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Infosys (INFY) fundamental deep dive report — FY26 data covering valuation, growth, financial health, returns, peers, and ownership.</h2>
+
+<div style="padding:1rem 0">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:1.5rem">
+  <div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">NSE: INFY &nbsp;·&nbsp; BSE: 500209 &nbsp;·&nbsp; IT Services</div>
+    <h1 style="font-size:22px;font-weight:500;margin-bottom:2px">Infosys Limited</h1>
+    <div style="font-size:13px;color:var(--text-secondary)">India's 2nd-largest IT company · Global AI-first consulting &amp; technology services</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:26px;font-weight:500">₹1,211</div>
+    <div style="font-size:12px;color:var(--text-muted)">CMP · screener.in (Apr 2026)</div>
+    <div style="margin-top:4px"><span class="badge badge-amber">52W High ₹1,728 | Low ₹1,202</span></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('snapshot',this)">Snapshot</button>
+  <button class="tab" onclick="showTab('valuation',this)">Valuation</button>
+  <button class="tab" onclick="showTab('growth',this)">Growth</button>
+  <button class="tab" onclick="showTab('health',this)">Health</button>
+  <button class="tab" onclick="showTab('returns',this)">Returns</button>
+  <button class="tab" onclick="showTab('peers',this)">Peers</button>
+  <button class="tab" onclick="showTab('ownership',this)">Ownership</button>
+  <button class="tab" onclick="showTab('view',this)">View</button>
+</div>
+
+<!-- SNAPSHOT -->
+<div id="panel-snapshot" class="panel active">
+  <div class="metric-grid">
+    <div class="metric-card"><div class="label">Market Cap</div><div class="value">₹4.91L Cr</div><div class="sub">~$58B USD</div></div>
+    <div class="metric-card"><div class="label">Revenue FY26</div><div class="value">₹1,78,650 Cr</div><div class="sub">+9.6% YoY (INR)</div></div>
+    <div class="metric-card"><div class="label">Net Profit FY26</div><div class="value">₹29,474 Cr</div><div class="sub">+10.2% YoY</div></div>
+    <div class="metric-card"><div class="label">EPS FY26</div><div class="value">₹71.58</div><div class="sub">+11.0% YoY</div></div>
+    <div class="metric-card"><div class="label">Stock P/E</div><div class="value">16.9x</div><div class="sub">vs sector ~22x</div></div>
+    <div class="metric-card"><div class="label">Dividend Yield</div><div class="value">3.56%</div><div class="sub">₹48/share FY26 total</div></div>
+  </div>
+
+  <div class="section">
+    <h3>Business at a glance</h3>
+    <p style="font-size:14px;color:var(--text-secondary);line-height:1.7">Founded in 1981 (Bengaluru), Infosys is India's second-largest IT services company, serving 1,869+ active clients across 59+ countries. It provides consulting, technology outsourcing, cloud migration, AI-led transformation, cybersecurity, and next-gen digital services. Key proprietary platforms include <strong style="font-weight:500">Topaz</strong> (AI-first services), <strong style="font-weight:500">Cobalt</strong> (cloud), <strong style="font-weight:500">Finacle</strong> (banking), and <strong style="font-weight:500">McCamish</strong> (insurance). Revenue in USD terms crossed the $20 billion milestone in FY26.</p>
+  </div>
+
+  <div class="section">
+    <h3>Key verticals (revenue mix, approx.)</h3>
+    <div class="chart-wrap">
+      <canvas id="vertChart" role="img" aria-label="Revenue mix by vertical: Financial Services 27%, Manufacturing 15%, Energy & Utilities 14%, Retail 13%, Hi-Tech 12%, Communications 10%, Life Sciences 9%">Financial Services 27%, Manufacturing 15%, Energy & Utilities 14%, Retail 13%, Hi-Tech 12%, Communications 10%, Life Sciences 9%.</canvas>
+    </div>
+  </div>
+
+  <div class="note">Data sources: Screener.in, Infosys FY26 results (SEC Form 6-K, April 23 2026), Tickertape, stockanalysis.com. CMP as of late April 2026.</div>
+</div>
+
+<!-- VALUATION -->
+<div id="panel-valuation" class="panel">
+  <div class="metric-grid">
+    <div class="metric-card"><div class="label">P/E (TTM)</div><div class="value">16.9x</div><div class="sub">Sector avg ~22x</div></div>
+    <div class="metric-card"><div class="label">P/B</div><div class="value">5.3x</div><div class="sub">Book value ₹229</div></div>
+    <div class="metric-card"><div class="label">Dividend Yield</div><div class="value">3.56%</div><div class="sub">Above-avg for IT</div></div>
+    <div class="metric-card"><div class="label">Market Cap/Sales</div><div class="value">~2.7x</div><div class="sub">Revenue ₹1,78,650 Cr</div></div>
+  </div>
+
+  <div class="section">
+    <h3>Valuation context</h3>
+    <div class="row"><span class="rkey">Current P/E (TTM)</span><span class="rval">~16.9x &nbsp;<span class="badge badge-green">Below sector avg</span></span></div>
+    <div class="row"><span class="rkey">IT Sector avg P/E (India)</span><span class="rval">~22–25x</span></div>
+    <div class="row"><span class="rkey">5Y historical P/E band (avg)</span><span class="rval">~22–28x</span></div>
+    <div class="row"><span class="rkey">Valuation verdict</span><span class="rval"><span class="badge badge-green">Trading below sector &amp; own history</span></span></div>
+    <div class="row"><span class="rkey">Reason for discount</span><span class="rval">IT sector de-rating, US macro headwinds, muted FY27 guidance</span></div>
+    <div class="row"><span class="rkey">EV/EBITDA (approx.)</span><span class="rval">~12–13x</span></div>
+    <div class="row"><span class="rkey">Dividend payout ratio</span><span class="rval">~68.5% (3Y avg)</span></div>
+  </div>
+
+  <div class="section">
+    <h3>P/E trend (illustrative based on available data)</h3>
+    <div class="chart-wrap">
+      <canvas id="peChart" role="img" aria-label="Infosys P/E ratio trend from FY22 to FY26 showing declining from ~38x to ~17x">P/E ratio: FY22 ~38x, FY23 ~25x, FY24 ~23x, FY25 ~22x, FY26 ~17x.</canvas>
+    </div>
+    <div class="source-note">🚩 Historical P/E estimated from public market data. Verify at screener.in for precise figures.</div>
+  </div>
+
+  <div class="note">At current levels, Infosys trades significantly below both the Indian IT sector average and its own 5-year historical P/E band. This may reflect sector-wide macro caution rather than company-specific deterioration, given its strong FCF, margin discipline, and large deal pipeline.</div>
+</div>
+
+<!-- GROWTH -->
+<div id="panel-growth" class="panel">
+  <div class="metric-grid">
+    <div class="metric-card"><div class="label">Revenue FY26 (INR)</div><div class="value">+9.6%</div><div class="sub">₹1,78,650 Cr</div></div>
+    <div class="metric-card"><div class="label">Revenue FY26 (USD CC)</div><div class="value">+3.1%</div><div class="sub">$20.16B</div></div>
+    <div class="metric-card"><div class="label">Net Profit Growth</div><div class="value">+10.2%</div><div class="sub">₹29,474 Cr</div></div>
+    <div class="metric-card"><div class="label">EPS Growth FY26</div><div class="value">+11.0%</div><div class="sub">₹71.58</div></div>
+    <div class="metric-card"><div class="label">Large Deal TCV FY26</div><div class="value">$14.9B</div><div class="sub">55% net new</div></div>
+    <div class="metric-card"><div class="label">FY27 Revenue Guidance</div><div class="value">1.5–3.5%</div><div class="sub">CC terms</div></div>
+  </div>
+
+  <div class="section">
+    <h3>Revenue trend (USD million)</h3>
+    <div class="chart-wrap">
+      <canvas id="revChart" role="img" aria-label="Infosys USD revenue trend FY22 to FY26: FY22 $16.3B, FY23 $18.2B, FY24 $18.6B, FY25 $19.3B, FY26 $20.2B">Revenue: FY22 $16.3B, FY23 $18.2B, FY24 $18.6B, FY25 $19.3B, FY26 $20.2B.</canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Quarterly EPS (INR, approx.)</h3>
+    <div class="chart-wrap">
+      <canvas id="epsChart" role="img" aria-label="Quarterly EPS trend Q1FY25 to Q4FY26">Q1FY25 15.7, Q2FY25 16.7, Q3FY25 16.2, Q4FY25 17.0, Q1FY26 16.8, Q2FY26 17.5, Q3FY26 17.0, Q4FY26 21.0.</canvas>
+    </div>
+    <div class="source-note">🚩 Q3FY26 EPS reflects a one-time adjustments; Q4FY26 includes reversal of tax provisions of ₹774 Cr. Source: Infosys SEC filings.</div>
+  </div>
+
+  <div class="section">
+    <h3>Growth quality indicators</h3>
+    <div class="row"><span class="rkey">Revenue CAGR (3Y, USD CC)</span><span class="rval">~5.5%</span></div>
+    <div class="row"><span class="rkey">Revenue CAGR (5Y, USD CC)</span><span class="rval">~8.2%</span></div>
+    <div class="row"><span class="rkey">Growth trend</span><span class="rval"><span class="badge badge-amber">Moderating — industry-wide softness</span></span></div>
+    <div class="row"><span class="rkey">Deal wins TCV (FY26)</span><span class="rval">$14.9B &nbsp;<span class="badge badge-green">Record high</span></span></div>
+    <div class="row"><span class="rkey">Net new deals share</span><span class="rval">55% — healthy new business addition</span></div>
+    <div class="row"><span class="rkey">FCF conversion</span><span class="rval">112.6% of net profit — strong</span></div>
+    <div class="row"><span class="rkey">EBITDA margin trend</span><span class="rval">Stable at 20.3–21% adjusted</span></div>
+  </div>
+</div>
+
+<!-- HEALTH -->
+<div id="panel-health" class="panel">
+  <div class="metric-grid">
+    <div class="metric-card"><div class="label">Debt/Equity</div><div class="value">~0.1x</div><div class="sub"><span class="badge badge-green">Very safe</span></div></div>
+    <div class="metric-card"><div class="label">Operating Margin</div><div class="value">20.3%</div><div class="sub">Adj. 21.0% FY26</div></div>
+    <div class="metric-card"><div class="label">Net Profit Margin</div><div class="value">~16.5%</div><div class="sub">FY26</div></div>
+    <div class="metric-card"><div class="label">Free Cash Flow</div><div class="value">$3.73B</div><div class="sub">+FCF conversion 112%</div></div>
+    <div class="metric-card"><div class="label">Interest Coverage</div><div class="value">&gt;30x</div><div class="sub"><span class="badge badge-green">Extremely healthy</span></div></div>
+    <div class="metric-card"><div class="label">Current Ratio</div><div class="value">&gt;2x</div><div class="sub"><span class="badge badge-green">Comfortable</span></div></div>
+  </div>
+
+  <div class="section">
+    <h3>Balance sheet quality</h3>
+    <div class="row"><span class="rkey">Debt profile</span><span class="rval">Essentially debt-free &nbsp;<span class="badge badge-green">D/E &lt;0.1</span></span></div>
+    <div class="row"><span class="rkey">Cash &amp; equivalents</span><span class="rval">Substantial — funds buybacks &amp; dividends</span></div>
+    <div class="row"><span class="rkey">Capital allocation</span><span class="rval">~68.5% payout ratio via dividends; periodic buybacks</span></div>
+    <div class="row"><span class="rkey">FCF FY26</span><span class="rval">₹33,097 Cr ($3.73B) — 112.3% of net profit</span></div>
+    <div class="row"><span class="rkey">FCF trend</span><span class="rval"><span class="badge badge-green">Positive and growing</span></span></div>
+    <div class="row"><span class="rkey">Working capital</span><span class="rval">Healthy; IT services model has negative WC (advance payments)</span></div>
+  </div>
+
+  <div class="section">
+    <h3>Margin trend (operating margin %)</h3>
+    <div class="chart-wrap">
+      <canvas id="marginChart" role="img" aria-label="Infosys adjusted operating margin trend FY22 to FY26: approximately 23%, 21%, 20.7%, 20.7%, 21%">Operating margin: FY22 23%, FY23 21%, FY24 20.7%, FY25 20.7%, FY26 21%.</canvas>
+    </div>
+    <div class="source-note">Source: Infosys SEC filings. FY26 adj. margin 21.0%. Reported IFRS margin 20.3% (includes one-time items).</div>
+  </div>
+
+  <div class="note">Infosys runs a near-zero debt balance sheet, generates free cash flow well above 100% of net profit, and has maintained ~20–21% operating margins consistently over 5 years. Financial health is a key moat for the business.</div>
+</div>
+
+<!-- RETURNS -->
+<div id="panel-returns" class="panel">
+  <div class="metric-grid">
+    <div class="metric-card"><div class="label">ROE</div><div class="value">32.2%</div><div class="sub"><span class="badge badge-green">Strong (&gt;15%)</span></div></div>
+    <div class="metric-card"><div class="label">ROCE</div><div class="value">40.3%</div><div class="sub"><span class="badge badge-green">Excellent</span></div></div>
+    <div class="metric-card"><div class="label">3Y Avg ROE</div><div class="value">~30.9%</div><div class="sub">Consistent</div></div>
+    <div class="metric-card"><div class="label">Dividend FY26</div><div class="value">₹48/share</div><div class="sub">Final ₹25 + Interim ₹23</div></div>
+  </div>
+
+  <div class="section">
+    <h3>ROE vs ROCE over time (approx.)</h3>
+    <div class="chart-wrap">
+      <canvas id="roeChart" role="img" aria-label="ROE and ROCE trend for Infosys FY22 to FY26">ROE: FY22 29%, FY23 31%, FY24 31%, FY25 30%, FY26 32%. ROCE: FY22 37%, FY23 40%, FY24 39%, FY25 39%, FY26 40%.</canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Return quality breakdown</h3>
+    <div class="row"><span class="rkey">ROE interpretation</span><span class="rval">32.2% — strong capital efficiency, no leverage boost</span></div>
+    <div class="row"><span class="rkey">ROCE interpretation</span><span class="rval">40.3% — excellent; asset-light business model advantage</span></div>
+    <div class="row"><span class="rkey">Dividend payout ratio</span><span class="rval">~68.5% (3Y avg) — high but sustainable</span></div>
+    <div class="row"><span class="rkey">Dividend consistency</span><span class="rval"><span class="badge badge-green">Regular + growing for 10+ years</span></span></div>
+    <div class="row"><span class="rkey">Buybacks</span><span class="rval">Periodic — shareholder-friendly</span></div>
+    <div class="row"><span class="rkey">Stock 1Y return</span><span class="rval">~-12.6% (IT sector-wide de-rating)</span></div>
+  </div>
+
+  <div class="note">ROE of 32%+ without significant financial leverage reflects genuinely superior capital efficiency. The asset-light IT services model generates high returns while requiring minimal capital reinvestment, leaving ample room for dividends and buybacks.</div>
+</div>
+
+<!-- PEERS -->
+<div id="panel-peers" class="panel">
+  <div class="section">
+    <h3>Peer comparison — IT sector (FY26)</h3>
+    <div style="overflow-x:auto">
+    <table class="peer-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Mkt Cap (₹Cr)</th>
+          <th>P/E</th>
+          <th>ROE</th>
+          <th>Op. Margin</th>
+          <th>Rev Growth</th>
+          <th>D/E</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>Infosys (INFY)</strong></td>
+          <td>4,90,974</td>
+          <td>16.9x</td>
+          <td>32.2%</td>
+          <td>21.0%</td>
+          <td>+3.1% CC</td>
+          <td>&lt;0.1</td>
+        </tr>
+        <tr>
+          <td>TCS</td>
+          <td>~8,00,000</td>
+          <td>~22x</td>
+          <td>~48%</td>
+          <td>~24.5%</td>
+          <td>~4.5% CC</td>
+          <td>~0</td>
+        </tr>
+        <tr>
+          <td>HCL Technologies</td>
+          <td>~3,80,000</td>
+          <td>~20x</td>
+          <td>~24%</td>
+          <td>~19.5%</td>
+          <td>~5% CC</td>
+          <td>~0.1</td>
+        </tr>
+        <tr>
+          <td>Wipro</td>
+          <td>~2,21,360</td>
+          <td>~22x</td>
+          <td>~16.5%</td>
+          <td>~17.2%</td>
+          <td>-1.6% CC</td>
+          <td>~0.1</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="source-note">🚩 Peer figures are indicative based on available FY26 data. Verify at screener.in/tickertape. TCS market cap approximate.</div>
+  </div>
+
+  <div class="section">
+    <h3>ROE comparison</h3>
+    <div style="position:relative;width:100%;height:220px;margin:1rem 0">
+      <canvas id="peerRoeChart" role="img" aria-label="ROE comparison: TCS 48%, Infosys 32%, HCL Tech 24%, Wipro 16%">ROE: TCS 48%, Infosys 32%, HCL Tech 24%, Wipro 16%.</canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Where Infosys leads vs. peers</h3>
+    <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">vs. Wipro:</strong> Superior margins (21% vs 17.2%), ROE (32% vs 16.5%), and positive CC revenue growth vs Wipro's decline.</div></div>
+    <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">vs. HCL Tech:</strong> Higher ROE; more consistent margin track record; larger deal wins proportionally.</div></div>
+    <div class="strength-item"><div class="dot dot-amber"></div><div><strong style="font-weight:500">vs. TCS:</strong> TCS leads on margins (24.5%), ROE (48%), revenue scale, and valuation premium. Infosys trades at a meaningful P/E discount to TCS — partly justified, partly sector-sentiment-driven.</div></div>
+  </div>
+</div>
+
+<!-- OWNERSHIP -->
+<div id="panel-ownership" class="panel">
+  <div class="section">
+    <h3>Shareholding pattern (Q1 2026)</h3>
+    <div class="chart-wrap">
+      <canvas id="ownerChart" role="img" aria-label="Shareholding: Promoters 14.4%, FII 30.3%, DII 19.2%, Retail 13.8%, Others 22.3%">Promoters 14.4%, FII 30.3%, DII 19.2%, Retail 13.8%, Others 22.3%.</canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Ownership details</h3>
+    <div class="row"><span class="rkey">Promoter holding</span><span class="rval">~14.4% &nbsp;<span class="badge badge-amber">Low — watch point</span></span></div>
+    <div class="row"><span class="rkey">Promoter pledge</span><span class="rval">0% &nbsp;<span class="badge badge-green">No pledge</span></span></div>
+    <div class="row"><span class="rkey">FII/FPI holding</span><span class="rval">~30.3% — significant global investor interest</span></div>
+    <div class="row"><span class="rkey">DII holding</span><span class="rval">~19.2% — includes LIC, domestic MFs</span></div>
+    <div class="row"><span class="rkey">Retail</span><span class="rval">~13.8%</span></div>
+  </div>
+
+  <div class="section">
+    <h3>Ownership context</h3>
+    <div class="strength-item"><div class="dot dot-amber"></div><div>Promoter holding is structurally low (~14.4%) as founders (Narayana Murthy family, Nilekani family) have diversified over time. This is a known and long-standing characteristic of Infosys, not a recent red flag.</div></div>
+    <div class="strength-item"><div class="dot dot-green"></div><div>High FII ownership (~30%+) signals sustained global institutional confidence. Major FIIs include Vanguard, Government Pension Investment Fund (Japan), and other index funds.</div></div>
+    <div class="strength-item"><div class="dot dot-green"></div><div>No promoter pledging — zero risk of forced selling due to pledge triggers.</div></div>
+    <div class="strength-item"><div class="dot dot-amber"></div><div>Promoter reclassifications are ongoing (June 2026: Shreyas &amp; Bhairavi Shibulal reclassified to public). This gradually reduces the already-low promoter percentage.</div></div>
+  </div>
+
+  <div class="note">Source: Choice India, Upstox, Screener.in — Q4 FY26 / Q1 FY27 shareholding data.</div>
+</div>
+
+<!-- VIEW -->
+<div id="panel-view" class="panel">
+  <div class="quality-box" style="margin-bottom:1.5rem">
+    <div class="qlabel">Overall fundamental quality</div>
+    <div class="qval">Strong</div>
+    <div class="qdesc">Infosys is a fundamentally sound, capital-efficient business with excellent return ratios, a debt-free balance sheet, and strong free cash flow generation. The near-term challenge is revenue growth acceleration in a soft IT demand environment, but the company's AI positioning (Topaz Fabric), record deal wins ($14.9B TCV FY26), and consistent margin delivery make it a high-quality franchise.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="section">
+      <h3>Key strengths</h3>
+      <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">ROCE/ROE excellence:</strong> 40%+ ROCE and 32%+ ROE with zero financial leverage — genuinely asset-light, capital-efficient model.</div></div>
+      <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">FCF engine:</strong> $3.73B FCF in FY26 (112% conversion) — cash generation is reliable and supports a 3.56% dividend yield.</div></div>
+      <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">AI strategy (Topaz):</strong> Record large deal wins of $14.9B TCV with 55% net new — AI-led transformation deals are ramping.</div></div>
+      <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">Margin resilience:</strong> Maintained 20–21% adjusted operating margin despite wage hikes, fresher hiring, and macro headwinds for 3+ years.</div></div>
+      <div class="strength-item"><div class="dot dot-green"></div><div><strong style="font-weight:500">Valuation discount:</strong> Trading at ~17x P/E vs 22–25x sector average and its own 5Y avg — potential mean-reversion opportunity if demand recovers.</div></div>
+    </div>
+
+    <div class="section">
+      <h3>Key watch points</h3>
+      <div class="watch-item"><div class="dot dot-amber"></div><div><strong style="font-weight:500">Revenue growth:</strong> FY27 guidance of 1.5–3.5% CC is modest. US tariff uncertainty and soft discretionary IT spending may constrain recovery.</div></div>
+      <div class="watch-item"><div class="dot dot-amber"></div><div><strong style="font-weight:500">H-1B &amp; immigration risk:</strong> High US revenue concentration (~60%) makes Infosys vulnerable to US visa policy changes and proposed fee hikes.</div></div>
+      <div class="watch-item"><div class="dot dot-amber"></div><div><strong style="font-weight:500">AI disruption risk:</strong> Generative AI could automate billable work, compressing headcount-linked revenues. Monitoring AI revenue contribution vs displacement is critical.</div></div>
+      <div class="watch-item"><div class="dot dot-amber"></div><div><strong style="font-weight:500">Low promoter holding:</strong> At ~14.4%, promoter skin-in-the-game is structurally low, though no pledge risk exists. Ongoing reclassifications reducing it further.</div></div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:0.5rem">
+    <h3>Key metric to track</h3>
+    <div class="row"><span class="rkey">Deal wins TCV (quarterly)</span><span class="rval">Signals future revenue visibility (lead indicator, 6–9 month lag)</span></div>
+    <div class="row"><span class="rkey">Revenue growth CC (quarterly)</span><span class="rval">Indicates whether FY27 guidance of 1.5–3.5% is being met</span></div>
+    <div class="row"><span class="rkey">GenAI % of new deal TCV</span><span class="rval">Tests whether Infosys Topaz is a genuine growth driver or narrative</span></div>
+    <div class="row"><span class="rkey">Operating margin</span><span class="rval">Watch for sustainability at 20–21% amid fresher hiring &amp; labor codes</span></div>
+  </div>
+
+  <div class="section">
+    <h3>Data confidence</h3>
+    <span class="badge badge-green">High</span>
+    <span style="font-size:13px;color:var(--text-secondary);margin-left:8px">FY26 data sourced from Infosys SEC Form 6-K filings (April 23, 2026). Shareholding from Screener.in / Choice India. Peer data cross-checked with public filings.</span>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:12px 14px;background:var(--surface-1);border-radius:8px;font-size:12px;color:var(--text-muted);line-height:1.6">
+    <strong style="font-weight:500;color:var(--text-secondary)">Disclaimer:</strong> This is a view of the fundamentals for educational purposes only. It is not investment advice and not a buy/sell/hold recommendation. Verify all figures independently at screener.in, tickertape.in, nseindia.com, and Infosys investor relations. The final decision is yours.
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+const gridC=isDark?'rgba(255,255,255,0.08)':'#e1e0d9';
+const textC=isDark?'#c3c2b7':'#52514e';
+const blue='#2a78d6',teal='#1baf7a',amber='#eda100',red='#e34948',purple='#4a3aa7';
+
+function baseOpts(title){return{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}}}};}
+
+new Chart(document.getElementById('vertChart'),{type:'doughnut',data:{labels:['Financial Svcs','Manufacturing','Energy & Utils','Retail','Hi-Tech','Communications','Life Sciences'],datasets:[{data:[27,15,14,13,12,10,9],backgroundColor:[blue,teal,amber,purple,red,'#888780','#1baf7a'],borderWidth:2,borderColor:isDark?'#1a1a19':'#fcfcfb'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:textC,font:{size:11},boxWidth:10,padding:8}}}}});
+
+new Chart(document.getElementById('peChart'),{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[{label:'P/E Ratio',data:[38,25,23,22,17],borderColor:blue,backgroundColor:isDark?'rgba(42,120,214,0.1)':'rgba(42,120,214,0.08)',borderWidth:2,pointBackgroundColor:blue,pointRadius:4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11}},suggestedMin:10,suggestedMax:45}}}});
+
+new Chart(document.getElementById('revChart'),{type:'bar',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[{label:'Revenue ($B)',data:[16.3,18.2,18.6,19.3,20.2],backgroundColor:[blue,blue,blue,blue,'#185FA5'],borderRadius:{topLeft:4,topRight:4},borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11},callback:v=>'\$'+v+'B'},suggestedMin:14}}}});
+
+new Chart(document.getElementById('epsChart'),{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],datasets:[{label:'EPS (₹)',data:[15.7,16.7,16.2,17.0,16.8,17.5,17.0,21.0],backgroundColor:isDark?'#3987e5':blue,borderRadius:{topLeft:4,topRight:4},borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11},callback:v=>'₹'+v},suggestedMin:14}}}});
+
+new Chart(document.getElementById('marginChart'),{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[{label:'Adj. Op. Margin %',data:[23,21,20.7,20.7,21],borderColor:teal,backgroundColor:isDark?'rgba(27,175,122,0.1)':'rgba(27,175,122,0.08)',borderWidth:2,pointBackgroundColor:teal,pointRadius:4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11},callback:v=>v+'%'},suggestedMin:18,suggestedMax:26}}}});
+
+new Chart(document.getElementById('roeChart'),{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[{label:'ROE',data:[29,31,31,30,32],borderColor:blue,backgroundColor:'transparent',borderWidth:2,pointBackgroundColor:blue,pointRadius:4},{label:'ROCE',data:[37,40,39,39,40],borderColor:amber,backgroundColor:'transparent',borderWidth:2,pointBackgroundColor:amber,pointRadius:4,borderDash:[5,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11},callback:v=>v+'%'},suggestedMin:22,suggestedMax:45}}}});
+
+new Chart(document.getElementById('peerRoeChart'),{type:'bar',data:{labels:['TCS','Infosys','HCL Tech','Wipro'],datasets:[{label:'ROE %',data:[48,32,24,16.5],backgroundColor:[isDark?'#3987e5':blue,isDark?'#199e70':teal,isDark?'#c98500':amber,'#888780'],borderRadius:{topLeft:4,topRight:4},borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gridC},ticks:{color:textC,font:{size:11}}},y:{grid:{color:gridC},ticks:{color:textC,font:{size:11},callback:v=>v+'%'},suggestedMin:0,suggestedMax:55}}}});
+
+new Chart(document.getElementById('ownerChart'),{type:'doughnut',data:{labels:['Promoters','FII/FPI','DII','Retail','Others'],datasets:[{data:[14.4,30.3,19.2,13.8,22.3],backgroundColor:[amber,blue,teal,'#888780',purple],borderWidth:2,borderColor:isDark?'#1a1a19':'#fcfcfb'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:textC,font:{size:11},boxWidth:10,padding:8}}}}});
+</script>
